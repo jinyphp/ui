@@ -1,0 +1,1 @@
+{{ xTab()->pushContent($slot, $attributes) }}
