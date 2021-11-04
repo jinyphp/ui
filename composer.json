@@ -12,8 +12,9 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.3|^8.0",
+        "jiny/html":"^0.9",
+        "jiny/theme":"^0.9.6",
         "livewire/livewire": "^2.7"
-
     },
     "autoload": {
         "psr-4": {
