@@ -116,14 +116,22 @@ class JinyUIServiceProvider extends ServiceProvider
 
         $shot = true;
         if($shot) {
-            Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
 
             // 레이아웃
+            Blade::component('jinyui::components.'.'layout.full-screen', 'full-screen');
+            Blade::component('jinyui::components.'.'layout.center', 'center');
+
+            Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
+
+
             Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
             Blade::component('jinyui::components.'.'layout.layout-item', 'layout-item');
             Blade::component('jinyui::components.'.'layout.container-fluid', 'container-fluid');
             Blade::component('jinyui::components.'.'layout.container-fluid', 'container-full');
             Blade::component('jinyui::components.'.'layout.container', 'container');
+
+            Blade::component('jinyui::components.'.'layout.display-table', 'display-table');
+            Blade::component('jinyui::components.'.'layout.display-table-cell', 'display-table-cell');
 
 
             // 메뉴
@@ -172,6 +180,10 @@ class JinyUIServiceProvider extends ServiceProvider
             Blade::component('jinyui::components.'.'forms.textarea', 'textarea');
 
             Blade::component('jinyui::components.'.'forms.progress', 'progress');
+
+            Blade::component('jinyui::components.'.'forms.formPost', 'form-post');
+            Blade::component('jinyui::components.'.'forms.submit', 'form-submit');
+
 
             $this->block();
 
