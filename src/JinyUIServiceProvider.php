@@ -135,7 +135,6 @@ class JinyUIServiceProvider extends ServiceProvider
 
 
             // 메뉴
-            Blade::component(\Jiny\UI\View\Components\Menu\Menu::class, "menu"); //메뉴 빌더를 호출
             Blade::component('jinyui::components.'.'sidebar.header', 'sidebar-header');
             Blade::component('jinyui::components.'.'sidebar.item', 'sidebar-item');
             Blade::component('jinyui::components.'.'sidebar.link', 'sidebar-link');
@@ -182,6 +181,7 @@ class JinyUIServiceProvider extends ServiceProvider
             Blade::component('jinyui::components.'.'forms.progress', 'progress');
 
             Blade::component('jinyui::components.'.'forms.formPost', 'form-post');
+            Blade::component('jinyui::components.'.'forms.formPatch', 'form-patch');
             Blade::component('jinyui::components.'.'forms.submit', 'form-submit');
 
 
