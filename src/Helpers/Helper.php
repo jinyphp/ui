@@ -5,7 +5,11 @@
  */
 
 function xDiv($items = null) {
-    return new \Jiny\Html\CDiv($items);	
+    return new \Jiny\Html\CDiv($items);
+}
+
+function xSpan($items = null) {
+    return new \Jiny\UI\Html\XSpan($items);
 }
 
 
@@ -123,9 +127,11 @@ function xAccordion()
     return \Jiny\UI\Components\XAccordion::instance();
 }
 
+/*
 function xIcon($name) {
     return new \Jiny\UI\View\Components\Icon($name);
 }
+*/
 
 function xBadge($title, $attr=[]) {
     return (new \Jiny\UI\View\Components\Button\Badge($title, $attr));
@@ -263,6 +269,6 @@ function BootCarousel()
         foreach($values as $k => $v) {
             array_push($ret, $array[$v]);
         }
-  
+
         return $ret;
     }

@@ -66,7 +66,7 @@ class JinyUIServiceProvider extends ServiceProvider
             \Jiny\UI\View\Components\MainContent::class, // 메인 레이아웃의 컨덴츠를 배치합니다.<main>테그
             //\Jiny\UI\View\Components\ThemeLayout::class,
             \Jiny\UI\View\Components\ThemeSidebar::class, // 테마 sidebar.blade.php 로드
-            \Jiny\UI\View\Components\Icon::class, //svg아이콘 생성
+            //\Jiny\UI\View\Components\Icon::class, //svg아이콘 생성
 
 
 
@@ -142,7 +142,7 @@ class JinyUIServiceProvider extends ServiceProvider
             Blade::component('jinyui::components.'.'sidebar.sub', 'sidebar-sub');
 
             //Icon
-            Blade::component(\Jiny\UI\View\Components\Icon::class, "icon");
+            //Blade::component(\Jiny\UI\View\Components\Icon::class, "icon");
 
 
 
@@ -253,7 +253,7 @@ class JinyUIServiceProvider extends ServiceProvider
             Blade::component('jinyui::components.'.'modal.footer', 'modal-footer');
 
             // Icon
-            Blade::component(\Jiny\UI\View\Components\IconFile::class, "icon-file");
+            //Blade::component(\Jiny\UI\View\Components\IconFile::class, "icon-file");
 
             //carousel
             Blade::component('jinyui::components.'.'carousel.inner', 'carousel');
@@ -268,6 +268,8 @@ class JinyUIServiceProvider extends ServiceProvider
             Blade::component('jinyui::components.'.'images.thumb', 'img-thumb');
             Blade::component('jinyui::components.'.'figure.figure', 'figure');
             Blade::component('jinyui::components.'.'figure.text', 'figure-text');
+
+            Blade::component('jinyui::components.'.'images.avata', 'avata'); //아바타 이미지 출력
 
             // Tab
             Blade::component('jinyui::components.'.'tab.header', 'tab-header');
@@ -403,12 +405,31 @@ class JinyUIServiceProvider extends ServiceProvider
         //Blade::component('jinyui::components.'.'layouts.main', 'main');
         //Blade::component('jinyui::components.'.'layouts.content', 'main-content');
         Blade::component('jinyui::components.'.'layout.row', 'row');
-        Blade::component('jinyui::components.'.'layout.row-center', 'row-center'); // 가로 가운데 정렬배치
+
         Blade::component('jinyui::components.'.'layout.col', 'col');
         Blade::component('jinyui::components.'.'layout.col-12', 'col-12');
+        Blade::component('jinyui::components.'.'layout.col-9', 'col-9');
+        Blade::component('jinyui::components.'.'layout.col-8', 'col-8');
         Blade::component('jinyui::components.'.'layout.col-6', 'col-6');
         Blade::component('jinyui::components.'.'layout.col-4', 'col-4');
         Blade::component('jinyui::components.'.'layout.col-3', 'col-3');
+        Blade::component('jinyui::components.'.'layout.col-10', 'col-10');
+        Blade::component('jinyui::components.'.'layout.col-2', 'col-2');
+
+        // 가로 가운데 정렬배치
+        Blade::component('jinyui::components.'.'layout.row-center', 'row-center');
+        Blade::component('jinyui::components.'.'layout.row-center-11', 'row-center-11');
+        Blade::component('jinyui::components.'.'layout.row-center-10', 'row-center-10');
+        Blade::component('jinyui::components.'.'layout.row-center-9', 'row-center-9');
+        Blade::component('jinyui::components.'.'layout.row-center-8', 'row-center-8');
+        Blade::component('jinyui::components.'.'layout.row-center-7', 'row-center-7');
+        Blade::component('jinyui::components.'.'layout.row-center-6', 'row-center-6');
+        Blade::component('jinyui::components.'.'layout.row-center-5', 'row-center-5');
+        Blade::component('jinyui::components.'.'layout.row-center-4', 'row-center-4');
+        Blade::component('jinyui::components.'.'layout.row-center-3', 'row-center-3');
+        Blade::component('jinyui::components.'.'layout.row-center-2', 'row-center-2');
+        Blade::component('jinyui::components.'.'layout.row-center-1', 'row-center-1');
+
 
 
         ## flex 박스
@@ -438,6 +459,26 @@ class JinyUIServiceProvider extends ServiceProvider
 
     private function Directive()
     {
+        // 블레이드 컴포넌트
+        // 상대경로 include
+        /*
+        Blade::directive('include2', function ($args) {
+            $args = Blade::stripParentheses($args);
+            $args = explode(',',$args);
+            //dd($args);
+
+            $viewBasePath = Blade::getPath();
+            $pos = strrpos($viewBasePath,'/');
+            $path = substr($viewBasePath,0,$pos);
+
+            $args[0] = str_replace(['"',"'"],"",$args[0]);
+            $file = $path."/".$args[0].".blade.php";
+            //dd($file);
+
+            return "<?php echo \$__env->make({$file}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
+        });
+        */
+
         /**
          * Markdown Directive
          */

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
 use Jiny\Html\Form\CInput;
@@ -7,7 +7,7 @@ class XCheckbox extends  CInput
 {
     public function __construct($name = null, $value = null) {
 		parent::__construct("checkbox", $name, $value);
-        
+
         // 부트스트랩 스타일적용
         $this->addClass("form-check-input");
 	}
@@ -27,4 +27,10 @@ class XCheckbox extends  CInput
 		$this->setAttribute('wire:model', $pros);
 		return $this;
 	}
+
+    public function setWire($key, $pros)
+    {
+        $this->setAttribute("wire:".$key, $pros);
+		return $this;
+    }
 }

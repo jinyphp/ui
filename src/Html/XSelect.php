@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
 use Jiny\Html\CTag;
@@ -20,8 +20,7 @@ class XSelect extends CTag
         if ($name) {
             $this->setAttribute("name",$name);
         }
-        
-        
+
         // 부트스트랩 스타일적용
         $this->addClass("form-control");
 	}
@@ -38,7 +37,9 @@ class XSelect extends CTag
         if ($value) {
             $option->setAttribute("value",$value);
         }
+
         $this->addItem($option);
+
         return $this;
     }
 
@@ -46,12 +47,11 @@ class XSelect extends CTag
     {
         foreach ($args as $key => $option) {
             if (is_array($option)) {
-                // ['title'=>"", 'value'=>""]
                 $this->addOption($option['title'], $option['value']);
             } else {
                 $this->addOption($option, $key);
             }
-            
+
         }
         return $this;
     }
@@ -74,24 +74,29 @@ class XSelect extends CTag
         return $this;
     }
 
+    public function table($tablename, $field, $filter=[]) {
+        return $this->addTable($tablename, $field, $filter);
+    }
+
     public function addTable($tablename, $field, $filter=[])
     {
         $db = DB::table($tablename);
 
         # 필터 조건
-        $db = $db->where("enable", "like", "%on%");
         foreach($filter as $key => $value) {
             if($value) {
                 $db = $db->where($key, "like", "%".$value."%");
-            }            
+            }
         }
-
         $rows = $db->orderBy($field, "desc")->get();
+
+        $this->addOption("선택하세요");
 
         foreach ($rows as $row) {
             $value = $row->id.":".$row->$field;
             $this->addOption($row->$field, $value);
         }
+
 
         return $this;
     }
@@ -117,7 +122,7 @@ class XSelect extends CTag
         } else if ($size == "lg") {
             $this->addClass("form-control-sm");
         }
-        
+
         return $this;
     }
 
@@ -169,7 +174,7 @@ class XSelect extends CTag
     public function setAttrs($attrs)
     {
         if (is_object($attrs) || is_array($attrs)) {
-            // 커스텀 속성을 분석합니다.     
+            // 커스텀 속성을 분석합니다.
             $attrs = $this->attrParser($attrs);
 
             foreach($attrs as $name => $value) {
@@ -185,7 +190,7 @@ class XSelect extends CTag
 
     private function attrParser($attrs)
     {
-        
+
         if (isset($attrs["width"])) {
             $this->setWidth($attrs["width"]);
             unset($attrs["width"]);
@@ -203,4 +208,10 @@ class XSelect extends CTag
 		$this->setAttribute('wire:model', $pros);
 		return $this;
 	}
+
+    public function setWire($key, $pros)
+    {
+        $this->setAttribute("wire:".$key, $pros);
+		return $this;
+    }
 }

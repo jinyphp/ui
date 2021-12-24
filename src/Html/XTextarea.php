@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
 use Jiny\Html\Form\CTextArea;
@@ -38,7 +38,7 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
 
     public function __construct($name = 'textarea', $value = '', $options = []) {
 		parent::__construct($name, $value, $options);
-        
+
         // 부트스트랩 스타일적용
         $this->addClass("form-control");
 	}
@@ -90,4 +90,10 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
 		$this->setAttribute('wire:model', $pros);
 		return $this;
 	}
+
+    public function setWire($key, $pros)
+    {
+        $this->setAttribute("wire:".$key, $pros);
+		return $this;
+    }
 }

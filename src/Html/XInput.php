@@ -1,9 +1,9 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
 use Jiny\Html\Form\CInput;
 
-class XInput extends  CInput
+class XInput extends CInput
 {
     /*
     // input fields
@@ -38,7 +38,7 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
 
     public function __construct($type = 'text', $name = null, $value = null) {
 		parent::__construct($type, $name, $value);
-        
+
         // 부트스트랩 스타일적용
         $this->addClass("form-control");
 	}
@@ -51,7 +51,7 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
         } else if ($size == "lg") {
             $this->addClass("form-control-sm");
         }
-        
+
         return $this;
     }
 
@@ -103,7 +103,7 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
     public function setAttrs($attrs)
     {
         if (is_object($attrs) || is_array($attrs)) {
-            // 커스텀 속성을 분석합니다.     
+            // 커스텀 속성을 분석합니다.
             $attrs = $this->attrParser($attrs);
 
             foreach($attrs as $name => $value) {
@@ -119,7 +119,7 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
 
     private function attrParser($attrs)
     {
-        
+
         if (isset($attrs["width"])) {
             $this->setWidth($attrs["width"]);
             unset($attrs["width"]);
@@ -144,4 +144,12 @@ define('ZBX_TEXTAREA_STANDARD_ROWS',			7);
 		$this->setAttribute('wire:model', $pros);
 		return $this;
 	}
+
+    public function setWire($key, $pros)
+    {
+        $this->setAttribute("wire:".$key, $pros);
+		return $this;
+    }
+
+
 }

@@ -1,9 +1,5 @@
-{{-- 가로 중앙정렬 --}}
-<div {{ $attributes->merge(['class' => 'row justify-content-center']) }}>
-    {{-- 
-    <div class="col-auto">
+<x-row>
+    <x-col-12 class="mx-auto">
         {{$slot}}
-    </div>
-    --}}
-    {{$slot}}
-</div>
+    </x-col-12>
+</x-row>
