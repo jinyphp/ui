@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
 use Jiny\Html\Ctag;
 use Jiny\UI\Html\XFormHor;
 use Jiny\UI\Html\XFormRow;
 
-class XForm 
+class XForm
 {
     /**
      * 싱글턴
@@ -13,19 +13,19 @@ class XForm
     private static $Instance;
     public static function instance()
     {
-        if (!isset(self::$Instance)) {             
+        if (!isset(self::$Instance)) {
             self::$Instance = new self();
             self::$Instance->form = new CTag('form', true);
-        } 
-        return self::$Instance; 
+        }
+        return self::$Instance;
     }
 
 
 
-    public $form;
+    public $forms;
     public function __toString()
     {
-        return $this->form->toString();
+        return $this->forms->toString();
         $res = "";
         return $res;
 	}

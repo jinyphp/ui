@@ -8,7 +8,7 @@ use Jiny\UI\View\Components\Icon;
 
 class MenuTree extends Component
 {
-    
+
     public $content, $before, $after;
     public $admin = true;
 
@@ -25,13 +25,13 @@ class MenuTree extends Component
     }
 
 
-    
 
 
 
 
 
-    
+
+
 
 
 
@@ -48,13 +48,15 @@ class MenuTree extends Component
 
 
     /**
-     * 
+     *
      */
 
+    /*
     public function sort()
     {
-        
+
     }
+    */
 
     // modal popup
 
@@ -64,7 +66,7 @@ class MenuTree extends Component
     {
         $this->modalEditMenuAdmin = true;
         $this->_data = $this->findId($id, $this->menu);
-        
+
     }
 
     public function update()

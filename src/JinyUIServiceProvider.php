@@ -529,6 +529,7 @@ class JinyUIServiceProvider extends ServiceProvider
             return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
         });
 
+        /*
 
         // 테마설정
         Blade::directive('setTheme', function ($args) {
@@ -559,6 +560,7 @@ class JinyUIServiceProvider extends ServiceProvider
 
             return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
         });
+        */
 
 
     }

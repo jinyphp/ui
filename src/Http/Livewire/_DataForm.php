@@ -11,7 +11,7 @@ class DataForm extends Component
     public $conf;
     public $table;
 
-    public $forms = [];
+    public $formss = [];
     public $data = array();
     public $mode;
     public $_id;
@@ -29,7 +29,7 @@ class DataForm extends Component
             $uri = $req->path();
             $this->mode = array_reverse(explode('/',$uri))[0];
         }
-        
+
         // conf 데이터를 넘겨받지 못한 경우
         // 직접 json 파일을 로드함
         if(!$this->conf) {
@@ -49,7 +49,7 @@ class DataForm extends Component
     {
         // 데이터를 DB에 삽입합니다.
         DB::table($this->table)->insert( $this->data );
-        
+
         $this->mode = "list";
 
         // 상위 livewire 모달창 닫기 호출
@@ -59,7 +59,7 @@ class DataForm extends Component
     public $ddd=[];
     public function render()
     {
-        
+
         $CTag = function () {
             return "<div>
             <input type='text' wire:model='ddd.a'>
@@ -72,5 +72,5 @@ class DataForm extends Component
     }
 
 
-    
+
 }

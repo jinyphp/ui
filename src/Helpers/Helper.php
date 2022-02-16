@@ -1,7 +1,8 @@
 <?php
+use \Jiny\Html\CTag;
 
-/**
- * xtag function
+/** ----- ----- ----- ----- -----
+ *  HTML 기본테그
  */
 
 function xDiv($items = null) {
@@ -13,8 +14,19 @@ function xSpan($items = null) {
 }
 
 
-/**
- * form
+function xUl()
+{
+    return new CTag('ul',true);
+}
+
+function xLi()
+{
+    return new CTag('li',true);
+}
+
+
+/** ----- ----- ----- ----- -----
+ *  form 테그
  */
 function xForm()
 {
@@ -27,8 +39,9 @@ function xFormItem()
 }
 
 function xInput($type = 'text', $name = null, $value = null) {
-    $input = new \Jiny\UI\Html\XInput($type, $name, $value);
-    return $input;
+    $obj = new \Jiny\UI\Html\XInput($type, $name, $value);
+    //$obj->addClass("form-control");
+    return $obj;
 }
 
 function xInputText($name = null, $value = null)
@@ -61,9 +74,31 @@ function xRadio($name = null, $value = null){
     return $input;
 }
 
-function xSelect($name = null){
-    $select = new \Jiny\UI\Html\XSelect($name);
-    return $select;
+if (!function_exists("xSelect")) {
+    function xSelect($name = null){
+        $select = new \Jiny\UI\Html\XSelect($name);
+        return $select;
+    }
+}
+
+if (!function_exists("parserValue")) {
+    function parserValue($string)
+    {
+        $arr = explode(":",$string);
+        if (isset($arr[1])) {
+            return $arr[1];
+        }
+    }
+}
+
+if (!function_exists("parserKey")) {
+    function parserKey($string)
+    {
+        $arr = explode(":",$string);
+        if (isset($arr[0])) {
+            return $arr[0];
+        }
+    }
 }
 
 function xTextarea($name = null, $value = null, $options=[]){
@@ -91,8 +126,16 @@ if (!function_exists("xProgress")) {
     }
 }
 
-/**
- * Table
+
+function xLabel($title=null)
+{
+    $obj = new CTag('label', true, $title);
+    $obj->addClass("col-form-label"); // bootstrap
+    return $obj;
+}
+
+/** ----- ----- ----- ----- -----
+ *  Table 테그
  */
 function xTable($slot=null){
     return new \Jiny\UI\Html\XTable($slot);
@@ -113,8 +156,8 @@ function xTableCheckRow($i){
 
 
 
-/**
- * component
+/** ----- ----- ----- ----- -----
+ *  component 테그
  */
 
 function xCollapse()
@@ -126,6 +169,22 @@ function xAccordion()
 {
     return \Jiny\UI\Components\XAccordion::instance();
 }
+
+function xNavTab()
+{
+    $obj = \Jiny\UI\Components\TabBar::instance();
+
+    return $obj;
+}
+
+// 부트스트랩 기반 텝바생성
+function xBootNavTab($type=null)
+{
+    $obj = \Jiny\UI\Components\Bootstrap\TabBarBoot::instance();
+    if($type) $obj->type($type);
+    return $obj;
+}
+
 
 /*
 function xIcon($name) {
@@ -169,6 +228,18 @@ if (!function_exists("CMenuItem")) {
         return new \Jiny\UI\CMenuItem($items);
     }
 }
+
+/** ----- ----- ----- ----- -----
+ *  Bootstrap Style Helpers
+ */
+
+function xRow($items = null) {
+    $obj = (new \Jiny\Html\CDiv($items));
+    $obj->addClass("row"); // bootstrap
+    return $obj;
+
+}
+
 
 
 function BCard()

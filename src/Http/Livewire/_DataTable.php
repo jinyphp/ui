@@ -20,7 +20,7 @@ class DataTable extends Component
 
     public function thead()
     {
-        
+
         $tbody = "";
         if(isset($this->rules['thead'])) {
             foreach($this->rules['thead'] as $key => $value) {
@@ -30,16 +30,16 @@ class DataTable extends Component
                 $tbody .= "<th>".$key.$item."</th>";
             }
         }
-        
+
         if ($this->admin) {
             $tbody .= '
-            <th wire:click="addHead" class="cursor-pointer" class="w-6"> 
+            <th wire:click="addHead" class="cursor-pointer" class="w-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             </th>';
-        }        
-        
+        }
+
         return "<thead><tr>".$tbody."</tr></thead>";
     }
 
@@ -71,7 +71,7 @@ class DataTable extends Component
 
         } else if (isset($this->rules['tablename'])) {
             // DB Table을 읽어서 출력
-            
+
         }
 
         // 데이터 없음
@@ -105,22 +105,22 @@ class DataTable extends Component
     public $title;
     public $_id;
 
-    public $forms = [];
+    public $formss = [];
 
     public $table_title = [];
- 
+
     public $conf = [];
     public function mount()
     {
         $path = resource_path("rules/mmm.json");
         $json = file_get_contents($path);
         $this->conf = json_decode($json,true);
-        
+
         // 목록 출력순으로 정렬
         $this->listTitle(
             arr_sort( $this->conf, '_list_pos' , 'asc' )
         );
-        
+
 
     }
 
@@ -145,7 +145,7 @@ class DataTable extends Component
         $this->modalFormVisible = false;
     }
 
-    
+
 
     public function create()
     {
@@ -153,31 +153,31 @@ class DataTable extends Component
         $this->mode = "new";
         $this->data = []; // 데이터 초기화
     }
-    
+
 
 
     public function edit($id)
     {
         $this->_id = $id;
-        
-        // 데이터를 DB에서 읽어 옵니다.        
+
+        // 데이터를 DB에서 읽어 옵니다.
         $data = DB::table($this->table)->where('id', $id)->first();
         foreach($data as $key => $value) {
             $this->data[$key] = $value; // Obj -> Arr 변환
-        }        
+        }
 
         $this->modalFormVisible = true; // 모달창을 생성 합니다.
         $this->mode = "edit";
     }
 
-    
+
     public function update()
-    {   
+    {
         // DB 데이터를 수정합니다.
         DB::table($this->table)
             ->where('id', $this->_id)
             ->update($this->data);
-            
+
         $this->modalFormVisible = false; //모달창을 제거 합니다.
         $this->mode = "list";
     }
@@ -202,18 +202,18 @@ class DataTable extends Component
     {
         $this->filter = [];
     }
-    
+
     public function render()
     {
         $db = DB::table($this->table);
         foreach($this->filter as $key => $value) {
             if($value) {
                 $db = $db->where($key, "like", "%".$value."%");
-            }            
+            }
         }
 
         $rows = $db->orderBy('id',"desc")
-            ->paginate($this->listnum); 
+            ->paginate($this->listnum);
         return view('jinyui::livewire.data-list',compact("rows"));
     }
 

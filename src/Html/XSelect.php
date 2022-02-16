@@ -31,6 +31,12 @@ class XSelect extends CTag
         return $this;
     }
 
+    // 옵션항목 추가
+    public function option($title, $value=null)
+    {
+        return $this->addOption($title, $value.":".$title);
+    }
+
     public function addOption($title, $value=null)
     {
         $option = new CTag("option",true,$title);
