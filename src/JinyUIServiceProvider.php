@@ -117,21 +117,7 @@ class JinyUIServiceProvider extends ServiceProvider
         $shot = true;
         if($shot) {
 
-            // 레이아웃
-            Blade::component('jinyui::components.'.'layout.full-screen', 'full-screen');
-            Blade::component('jinyui::components.'.'layout.center', 'center');
 
-            Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
-
-
-            Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
-            Blade::component('jinyui::components.'.'layout.layout-item', 'layout-item');
-            Blade::component('jinyui::components.'.'layout.container-fluid', 'container-fluid');
-            Blade::component('jinyui::components.'.'layout.container-fluid', 'container-full');
-            Blade::component('jinyui::components.'.'layout.container', 'container');
-
-            Blade::component('jinyui::components.'.'layout.display-table', 'display-table');
-            Blade::component('jinyui::components.'.'layout.display-table-cell', 'display-table-cell');
 
 
             // 메뉴
@@ -283,16 +269,11 @@ class JinyUIServiceProvider extends ServiceProvider
 
 
 
+            $this->table();
 
-            //Table
-            Blade::component(\Jiny\UI\View\Components\Tables\Table::class, "table");
-            Blade::component(\Jiny\UI\View\Components\Tables\TableHead::class, 'table-head');
-            Blade::component(\Jiny\UI\View\Components\Tables\TableHead::class, 'thead');
-            Blade::component(\Jiny\UI\View\Components\Tables\TableBody::class, 'table-body');
-            Blade::component(\Jiny\UI\View\Components\Tables\TableBody::class, 'tbody');
-            Blade::component('jinyui::components.'.'tables.check-all', 'table-check-all');
-            Blade::component('jinyui::components.'.'tables.check-all', 'table-allcheck');
-            Blade::component('jinyui::components.'.'tables.check', 'table-check');
+            $this->modal();
+            $this->tab(); // 텝관련 컴포넌트
+
 
 
 
@@ -375,7 +356,56 @@ class JinyUIServiceProvider extends ServiceProvider
 
     }
 
-    protected function button()
+    protected function tab($type="tailwind")
+    {
+        // 팝업 Dialog
+        if($type == "bootstrap") {
+        } else {
+            // Tailwind
+            ## radio 입력을 통한 텝바구현
+            ///Blade::component('jinyui::components.'.'tab.'.$type.'.tab-radio', 'tab-radio');
+            Blade::component(\Jiny\UI\View\Components\Tab\Radio\RadioTab::class, "tab-radio");
+            Blade::component(\Jiny\UI\View\Components\Tab\Radio\RadioTabItem::class, "tab-radio-item");
+        }
+
+    }
+
+    protected function modal($type="tailwind")
+    {
+        // 팝업 Dialog
+        if($type == "bootstrap") {
+        } else {
+            // Tailwind
+            Blade::component('jinyui::components.'.'modal.'.$type.'.dialog', 'popup-dialog');
+            Blade::component('jinyui::components.'.'modal.'.$type.'.modal', 'popup-modal');
+        }
+
+    }
+
+    protected function table($type="tailwind")
+    {
+        //Table
+        if($type == "bootstrap") {
+            Blade::component(\Jiny\UI\View\Components\Tables\Table::class, "table");
+            Blade::component(\Jiny\UI\View\Components\Tables\TableHead::class, 'table-head');
+            Blade::component(\Jiny\UI\View\Components\Tables\TableHead::class, 'thead');
+            Blade::component(\Jiny\UI\View\Components\Tables\TableBody::class, 'table-body');
+            Blade::component(\Jiny\UI\View\Components\Tables\TableBody::class, 'tbody');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.check-all', 'table-check-all');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.check-all', 'table-allcheck');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.check', 'table-check');
+        } else {
+            // Tailwind
+            Blade::component('jinyui::components.'.'tables.'.$type.'.table', 'table');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.th', 'th');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.td', 'td');
+            Blade::component('jinyui::components.'.'tables.'.$type.'.td_center', 'td-center');
+
+        }
+
+    }
+
+    protected function button($type="tailwind")
     {
         Blade::component(\Jiny\UI\View\Components\Button\Button::class, "button");
         Blade::component('jinyui::components.'.'button.button-outline', 'button-outline');
@@ -386,6 +416,13 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component(\Jiny\UI\View\Components\Button\Group::class, "button-group");
         Blade::component('jinyui::components.'.'button.close', 'close');
         Blade::component(\Jiny\UI\View\Components\Button\Badge::class, 'badge');
+
+
+        // Tailwind Button Style
+        Blade::component('jinyui::components.'.'button.'.$type.'.primary', 'btn-primary');
+        Blade::component('jinyui::components.'.'button.'.$type.'.second', 'btn-second');
+        Blade::component('jinyui::components.'.'button.'.$type.'.danger', 'btn-danger');
+        Blade::component('jinyui::components.'.'button.'.$type.'.danger_text', 'btn-danger-text');
     }
 
     protected function block()
@@ -396,8 +433,32 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component('jinyui::components.'.'box.callout-info', 'callout-info');
     }
 
-    protected function layout()
+    protected function layout($type="tailwind")
     {
+        if($type == "bootstrap") {
+            Blade::component('jinyui::components.'.'layout.bootstrap.container', 'container');
+        } else {
+            Blade::component('jinyui::components.'.'layout.tailwind.container', 'container');
+        }
+
+
+
+        // 레이아웃
+        Blade::component('jinyui::components.'.'layout.full-screen', 'full-screen');
+        Blade::component('jinyui::components.'.'layout.center', 'center');
+
+        Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
+
+
+        Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
+        Blade::component('jinyui::components.'.'layout.layout-item', 'layout-item');
+        Blade::component('jinyui::components.'.'layout.container-fluid', 'container-fluid');
+        Blade::component('jinyui::components.'.'layout.container-fluid', 'container-full');
+
+
+        Blade::component('jinyui::components.'.'layout.display-table', 'display-table');
+        Blade::component('jinyui::components.'.'layout.display-table-cell', 'display-table-cell');
+
         //Blade::component('jinyui::components.'.'app', 'app');
         //Blade::component('jinyui::components.'.'layout', 'layout');
         //Blade::component('jinyui::components.'.'theme', 'theme');
