@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Jiny\\UI\\":"src/"
+            "Jiny\\UI\\":"src/",
+            "jiny/html": "dev-master"
         },
         "files" : [
             "src/Helpers/Helper.php"
