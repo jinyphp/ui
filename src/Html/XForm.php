@@ -1,7 +1,7 @@
 <?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 use Jiny\UI\Html\XFormHor;
 use Jiny\UI\Html\XFormRow;
 
