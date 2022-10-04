@@ -2,7 +2,7 @@
 namespace Jiny\UI\Components;
 
 use \Jiny\Html\CDiv;
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class TabBarContent // extends CDiv
 {
@@ -28,7 +28,7 @@ class TabBarContent // extends CDiv
 
     public function setContent($items=null)
     {
-        $pane = new Ctag('div',true);
+        $pane = new CTag('div',true);
 
         $pane->addClass("tab-pane");
 

@@ -1,8 +1,8 @@
-<?php 
+<?php
 namespace Jiny\UI\Components;
 
 use CTag as GlobalCTag;
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XNav
 {
@@ -12,11 +12,11 @@ class XNav
     private static $Instance;
     public static function instance()
     {
-        if (!isset(self::$Instance)) {             
+        if (!isset(self::$Instance)) {
             self::$Instance = new self();
             self::$Instance->init();
-        } 
-        return self::$Instance; 
+        }
+        return self::$Instance;
     }
 
     public function __toString()

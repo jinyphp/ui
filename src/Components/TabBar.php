@@ -2,7 +2,7 @@
 namespace Jiny\UI\Components;
 
 use \Jiny\Html\CDiv;
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 use Illuminate\Support\Facades\DB;
 
 
@@ -30,7 +30,7 @@ class TabBar extends CDiv
     ## 사용자가 텍스트 형태로 텝 이름을 지정함
     public function addTab($title, $active=false)
     {
-        $li = new Ctag('li',true);
+        $li = new CTag('li',true);
         $li->addClass("nav-item"); // bootstrap
 
         // 1. 이동링크
@@ -48,8 +48,8 @@ class TabBar extends CDiv
     // Admin Setting Tab
     public function setTab($title, $id, $active=false)
     {
-        $li = new Ctag('li',true);
-        //$li = new Ctag('div',true);
+        $li = new CTag('li',true);
+        //$li = new CTag('div',true);
         $li->addClass("nav-item"); // bootstrap
         // tab 드래그
 
@@ -79,7 +79,7 @@ class TabBar extends CDiv
 
     public function link($title, $active=false)
     {
-        $link = new Ctag('a',true);
+        $link = new CTag('a',true);
 
         $link->setAttribute("data-bs-toggle", "tab");
         $link->setAriaExpanded("false");
@@ -110,8 +110,8 @@ class TabBar extends CDiv
 
     public function tabHeader()
     {
-        $ul = new Ctag('ul',true);
-        //$ul = new Ctag('div',true);
+        $ul = new CTag('ul',true);
+        //$ul = new CTag('div',true);
         foreach($this->tabs as $tab) {
             $ul->addItem($tab);
         }
@@ -127,7 +127,7 @@ class TabBar extends CDiv
 
     public function tabContent()
     {
-        $content = new Ctag('div',true);
+        $content = new CTag('div',true);
 
         foreach($this->contents as $pane) {
             $content->addItem($pane);
@@ -155,7 +155,7 @@ class TabBar extends CDiv
         $link->setAttribute('wire:click', "popupTabbar");
         $link->addClass("nav-link"); // bootstrap
 
-        $li = new Ctag('li',true);
+        $li = new CTag('li',true);
         $li->addClass("nav-item"); // bootstrap
         $li->addItem($link);
 
@@ -206,7 +206,7 @@ class TabBar extends CDiv
 
     private function option($cnt, $drag)
     {
-        $tabInput = new Ctag('input',false);
+        $tabInput = new CTag('input',false);
         $tabInput->setAttribute('type',"radio");
         $tabInput->setAttribute('value',$cnt);
         $tabInput->setAttribute('data-index', $drag);
@@ -217,7 +217,7 @@ class TabBar extends CDiv
 
     private function tabNav($cnt, $titles)
     {
-        $tabNav = new Ctag('nav',true);
+        $tabNav = new CTag('nav',true);
         $tabNav->addClass("tab-header");
 
 
@@ -245,7 +245,7 @@ class TabBar extends CDiv
 
     private function content($content, $drag)
     {
-        $tabContent = new Ctag('article',true);
+        $tabContent = new CTag('article',true);
         $tabContent->addClass("tab-content");
         $tabContent->setAttribute('data-tab-index', $drag);
         $tabContent->addItem($content);
@@ -254,7 +254,7 @@ class TabBar extends CDiv
 
     private function label($title, $cnt)
     {
-        $label = new Ctag('label',true);
+        $label = new CTag('label',true);
         $label->setAttribute('for', "__tab-".$cnt);
         $label->addItem($title);
         return $label;
@@ -272,7 +272,7 @@ class TabBar extends CDiv
      */
     public function __toString()
     {
-        $section = new Ctag('section',true);
+        $section = new CTag('section',true);
         $section->addClass("jiny tabbar");
 
 

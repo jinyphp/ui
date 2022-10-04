@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XFormItem
 {
@@ -11,10 +11,10 @@ class XFormItem
     private static $Instance;
     public static function instance()
     {
-        if (!isset(self::$Instance)) {             
+        if (!isset(self::$Instance)) {
             self::$Instance = new self();
-        } 
-        return self::$Instance; 
+        }
+        return self::$Instance;
     }
 
     public $label;
@@ -33,7 +33,7 @@ class XFormItem
         return $this;
     }
 
-    
+
     public function setLabel($title, $attrs=null)
     {
         if ($title) {
@@ -98,7 +98,7 @@ class XFormItem
     {
         if ($this->item) {
             return $this->item->addClass("col-sm-10"); // bootstrap css
-        }        
+        }
     }
 
     public function vertical()
@@ -110,8 +110,8 @@ class XFormItem
 
         if ($this->slot) {
             $hor->addItem($this->slot);
-        }        
-        
+        }
+
         $this->init(); // 다음 작업을 위하여 초기화...
         return $hor;
     }
@@ -141,7 +141,7 @@ class XFormItem
         if ($this->slot) {
             $hor->addItem($this->slot);
         }
-        
+
         $this->init(); // 다음 작업을 위하여 초기화...
         return $hor;
     }

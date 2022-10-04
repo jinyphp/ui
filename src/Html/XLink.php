@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XLink extends CTag
 {
@@ -21,7 +21,7 @@ class XLink extends CTag
 		return $this;
 	}
 
-	public function setUrl($url) 
+	public function setUrl($url)
 	{
 		$this->url = $url;
 		return $this;

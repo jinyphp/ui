@@ -1,7 +1,7 @@
 <?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XSpan extends CTag
 {

@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XLinks
 {
@@ -12,7 +12,7 @@ class XLinks
         	$this->items []= xLink($arg['item'], $arg['url']);
     	}
 	}
-	
+
 	/**
 	 * 단체속성 지정
 	 *

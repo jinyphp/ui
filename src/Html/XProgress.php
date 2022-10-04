@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 
 class XProgress extends CTag
@@ -11,7 +11,7 @@ class XProgress extends CTag
     private $min;
 
 
-    public function __construct($now=0, $max=100, $min=0) 
+    public function __construct($now=0, $max=100, $min=0)
     {
 		parent::__construct('div', true);
         $this->addClass("progress mb-3");
@@ -43,7 +43,7 @@ class XProgress extends CTag
         return $this;
     }
 
-    public function toString($destroy = true) 
+    public function toString($destroy = true)
     {
         $item = new CTag("div", true);
         $item->addClass("progress-bar");
@@ -51,7 +51,7 @@ class XProgress extends CTag
 
         if($this->now) {
             $item->setAttribute("style", "width:".$this->now."%");
-        }        
+        }
         $item->setAttribute("aria-valuenow", $this->now);
         $item->setAttribute("aria-valuemin", $this->min);
         $item->setAttribute("aria-valuemax", $this->max);
@@ -74,10 +74,10 @@ class XProgress extends CTag
 
         $this->addItem($item);
 
-        
+
         return parent::toString($destroy);
     }
-    
+
 
 
 

@@ -1,22 +1,22 @@
-<?php 
+<?php
 namespace Jiny\UI\Html;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 
 class XGroup extends CTag
 {
 
     private $type;
-    
+
     public function __construct($items = []) {
 		parent::__construct('div', true);
 
         foreach($items as $item) {
             $this->addItem($item);
-        }		
+        }
 	}
-    
+
 
 
     /**
@@ -32,7 +32,7 @@ class XGroup extends CTag
         }
         return $this;
     }
-    
+
     /**
      * 테그이름을 변경합니다.
      *
@@ -51,7 +51,7 @@ class XGroup extends CTag
             $this->addClass("btn-group-vertical"); // 부트스트랩 클래스
         } else {
             $this->addClass("btn-group"); // 부트스트랩 클래스
-        }        
+        }
         $this->role("group");
         return $this;
     }
@@ -63,7 +63,7 @@ class XGroup extends CTag
         } else if ($size == "small") {
             $this->addClass("btn-group-sm");
         }
-        
+
 
         return $this;
     }
@@ -117,7 +117,7 @@ class XGroup extends CTag
             }
 
             if ($this->active) {
-                $this->items[ $this->active -1 ]->addClass("active"); 
+                $this->items[ $this->active -1 ]->addClass("active");
             }
         }
         */
@@ -127,7 +127,7 @@ class XGroup extends CTag
 
     public function setAttrs($attrs)
     {
-        if (is_object($attrs) || is_array($attrs)) {           
+        if (is_object($attrs) || is_array($attrs)) {
             foreach($attrs as $name => $value) {
                 if ($name === "class") {
                     $this->addClass($value);

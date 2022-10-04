@@ -2,7 +2,7 @@
 namespace Jiny\UI\Components\Bootstrap;
 
 use \Jiny\Html\CDiv;
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 use Illuminate\Support\Facades\DB;
 
 
@@ -29,7 +29,7 @@ class TabBarBoot extends CDiv
     ## 사용자가 텍스트 형태로 텝 이름을 지정함
     public function addTab($title, $active=false)
     {
-        $li = new Ctag('li',true);
+        $li = new CTag('li',true);
         $li->addClass("nav-item"); // bootstrap
 
         // 1. 이동링크
@@ -47,8 +47,8 @@ class TabBarBoot extends CDiv
     // Admin Setting Tab
     public function setTab($title, $id, $active=false)
     {
-        $li = new Ctag('li',true);
-        //$li = new Ctag('div',true);
+        $li = new CTag('li',true);
+        //$li = new CTag('div',true);
         $li->addClass("nav-item"); // bootstrap
         // tab 드래그
         //$li->addClass("dragtab");
@@ -95,7 +95,7 @@ class TabBarBoot extends CDiv
 
     public function link($title, $active=false)
     {
-        $link = new Ctag('a',true);
+        $link = new CTag('a',true);
 
         $link->setAttribute("data-bs-toggle", "tab");
         $link->setAriaExpanded("false");
@@ -124,8 +124,8 @@ class TabBarBoot extends CDiv
 
     public function tabHeader()
     {
-        $ul = new Ctag('ul',true);
-        //$ul = new Ctag('div',true);
+        $ul = new CTag('ul',true);
+        //$ul = new CTag('div',true);
         foreach($this->tabs as $tab) {
             $ul->addItem($tab);
         }
@@ -141,7 +141,7 @@ class TabBarBoot extends CDiv
 
     public function tabContent()
     {
-        $content = new Ctag('div',true);
+        $content = new CTag('div',true);
 
         foreach($this->contents as $pane) {
             $content->addItem($pane);
@@ -169,7 +169,7 @@ class TabBarBoot extends CDiv
         $link->setAttribute('wire:click', "popupTabbar");
         $link->addClass("nav-link"); // bootstrap
 
-        $li = new Ctag('li',true);
+        $li = new CTag('li',true);
         $li->addClass("nav-item"); // bootstrap
         $li->addItem($link);
 

@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Jiny\UI\Components;
 
-use Jiny\Html\Ctag;
+use Jiny\Html\CTag;
 
 class XAccordion
 {
@@ -9,10 +9,10 @@ class XAccordion
     public static function instance()
     {
         if (!isset(self::$Instance)) {
-            // 자기 자신의 인스턴스를 생성합니다.                
+            // 자기 자신의 인스턴스를 생성합니다.
             self::$Instance = new self();
-        } 
-        return self::$Instance; 
+        }
+        return self::$Instance;
     }
 
 
@@ -34,7 +34,7 @@ class XAccordion
     {
         if(!$this->uid) {
             $this->uid = uniqid($salt."_");
-        }        
+        }
         return $this->uid;
     }
 
@@ -87,7 +87,7 @@ class XAccordion
             $collapse = $this->_collapse;
             $this->_collapse = null;
             return $collapse;
-        } 
+        }
         // collapse id 생성
         else {
             $this->_collapse = uniqid("_collapse_".random_int(0,1000));
@@ -95,5 +95,5 @@ class XAccordion
         }
     }
 
-    
+
 }
