@@ -40,7 +40,6 @@ function xFormItem()
 
 function xInput($type = 'text', $name = null, $value = null) {
     $obj = new \Jiny\UI\Html\XInput($type, $name, $value);
-    //$obj->addClass("form-control");
     return $obj;
 }
 
