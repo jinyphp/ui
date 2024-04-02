@@ -1,6 +1,6 @@
 {
     "name": "jiny/ui",
-    "description": "jiny ui components",
+    "description": "ui for JinyPHP",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,15 +11,17 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.3|^8.0",
-        "livewire/livewire": "^2.7"
+        "php": "^8.1"
     },
     "autoload": {
         "psr-4": {
             "Jiny\\UI\\":"src/"
         },
         "files" : [
-            "src/Helpers/Helper.php"
+            "src/Helpers/Helper.php",
+            "src/Helpers/Bootstrap.php",
+            "src/Helpers/Tailwind.php",
+            "src/Helpers/Html.php"
         ]
     },
     "autoload-dev": {
