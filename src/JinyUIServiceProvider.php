@@ -28,10 +28,17 @@ class JinyUIServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', $this->package);
 
+
+        // ui 레이아웃 골격
+        Blade::component('jinyui::components.'.'app', 'ui-app');
+
+        // 프레임워크
+        Blade::component('jinyui::components.'.'bootstrap', 'bootstrap'); //부트스트랩 랩퍼
+        Blade::component('jinyui::components.'.'tailwindcss', 'tailwindcss');
+
         $this->configureComponents();
+
         $this->Directive();
-
-
 
     }
 
@@ -39,22 +46,68 @@ class JinyUIServiceProvider extends ServiceProvider
     {
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
-            /*
-            Livewire::component('data-field', DataField::class);
-            Livewire::component('data-list', DataList::class);
-            Livewire::component('data-form', DataForm::class);
-            Livewire::component('data-form-setting', DataFormSetting::class);
 
-            //Livewire::component('counter', \Jiny\UI\Http\Livewire\Counter::class);
-            Livewire::component('menu-tree', \Jiny\UI\Http\Livewire\MenuTree::class);
-
-            Livewire::component('datatable', DataTable::class);
-            */
         });
     }
 
+    private function Directive()
+    {
+        /**
+         * Markdown Directive
+         */
+        Blade::directive('markdownText', function ($args) {
+            $body = Blade::stripParentheses($args);
+            return (new \Parsedown())->text($body);
+        });
+
+        Blade::directive('markdownFile', function ($args) {
+            $args = Blade::stripParentheses($args);
+            $args = trim($args,'"');
+            if($args[0] == ".") {
+                $path = str_replace(".", DIRECTORY_SEPARATOR, $args).".md";
+                $realPath = dirname(Blade::getPath()).$path;
+            }
+
+            if (file_exists($realPath)) {
+                $body = file_get_contents($realPath);
+                return (new \Parsedown())->text($body);
+            } else {
+                return "cannot find markdown resource ".$realPath."<br>";
+            }
+        });
+
+        Blade::directive('codeFile', function ($args) {
+            $expression = Blade::stripParentheses($args);
+            /*
+            $filename = explode("::", $expression)[1];
+            $filename = str_replace(".", DIRECTORY_SEPARATOR, $filename);
+            $filename = trim($filename,'"').".blade.php";
+
+            $file = "";
+            dd($this->app['config']['view.paths'] );
+            foreach ($this->app['config']['view.paths'] as $path) {
+                dd($path.DIRECTORY_SEPARATOR.$filename);
+                if(file_exists($path.DIRECTORY_SEPARATOR.$filename)) {
+                    $file = $path.DIRECTORY_SEPARATOR.$filename;
+                    break;
+                }
+            }
+            */
+
+            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
+        });
+
+        Blade::directive('widget', function ($args) {
+            $expression = Blade::stripParentheses($args);
+            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
+        });
+    }
+
+
+
     protected function configureComponents()
     {
+
 
         /* 컴포넌트 클래스 등록 */
         $this->loadViewComponentsAs('jinyui', [
@@ -462,7 +515,7 @@ class JinyUIServiceProvider extends ServiceProvider
         //Blade::component('jinyui::components.'.'app', 'app');
         //Blade::component('jinyui::components.'.'layout', 'layout');
         //Blade::component('jinyui::components.'.'theme', 'theme');
-        Blade::component('jinyui::components.'.'bootstrap', 'bootstrap'); //부트스트랩 랩퍼
+
         //Blade::component('jinyui::components.'.'layouts.main', 'main');
         //Blade::component('jinyui::components.'.'layouts.content', 'main-content');
         Blade::component('jinyui::components.'.'layout.row', 'row');
@@ -518,113 +571,7 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component('jinyui::components.'.$component, 'jiny-'.$component);
     }
 
-    private function Directive()
-    {
-        // 블레이드 컴포넌트
-        // 상대경로 include
-        /*
-        Blade::directive('include2', function ($args) {
-            $args = Blade::stripParentheses($args);
-            $args = explode(',',$args);
-            //dd($args);
 
-            $viewBasePath = Blade::getPath();
-            $pos = strrpos($viewBasePath,'/');
-            $path = substr($viewBasePath,0,$pos);
-
-            $args[0] = str_replace(['"',"'"],"",$args[0]);
-            $file = $path."/".$args[0].".blade.php";
-            //dd($file);
-
-            return "<?php echo \$__env->make({$file}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-        */
-
-        /**
-         * Markdown Directive
-         */
-        Blade::directive('markdownText', function ($args) {
-            $body = Blade::stripParentheses($args);
-            return (new \Parsedown())->text($body);
-        });
-
-        Blade::directive('markdownFile', function ($args) {
-            $args = Blade::stripParentheses($args);
-            $args = trim($args,'"');
-            if($args[0] == ".") {
-                $path = str_replace(".", DIRECTORY_SEPARATOR, $args).".md";
-                $realPath = dirname(Blade::getPath()).$path;
-            }
-
-            if (file_exists($realPath)) {
-                $body = file_get_contents($realPath);
-                return (new \Parsedown())->text($body);
-            } else {
-                return "cannot find markdown resource ".$realPath."<br>";
-            }
-        });
-
-        Blade::directive('codeFile', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            /*
-            $filename = explode("::", $expression)[1];
-            $filename = str_replace(".", DIRECTORY_SEPARATOR, $filename);
-            $filename = trim($filename,'"').".blade.php";
-
-            $file = "";
-            dd($this->app['config']['view.paths'] );
-            foreach ($this->app['config']['view.paths'] as $path) {
-                dd($path.DIRECTORY_SEPARATOR.$filename);
-                if(file_exists($path.DIRECTORY_SEPARATOR.$filename)) {
-                    $file = $path.DIRECTORY_SEPARATOR.$filename;
-                    break;
-                }
-            }
-            */
-
-            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-
-        Blade::directive('widget', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-
-        /*
-
-        // 테마설정
-        Blade::directive('setTheme', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            \Jiny\UI\Theme::instance()->setTheme($expression);
-        });
-
-        // 테마안에 있는 리소스를 읽어 옵니다.
-        Blade::directive('theme', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            $path = trim($expression,'"');
-
-            // 상대경로 parsing
-            if($path[0] == ".") {
-                $path = substr($path,1);
-
-                $viewBasePath = Blade::getPath();
-                $base = dirname(trim($viewBasePath,'\/'));
-                $base = str_replace(['/','\\'], ".", $base);
-                $base = array_reverse(explode(".",$base));
-                for($i=0; $i<count($base);$i++) {
-                    if($base[$i] == "theme") break;
-                    $path = $base[$i].".".$path;
-                }
-            }
-
-            $expression = '"'."theme.".$path.'"';
-
-            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-        */
-
-
-    }
 
 
 }
