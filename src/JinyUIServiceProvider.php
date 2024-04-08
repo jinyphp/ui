@@ -30,11 +30,14 @@ class JinyUIServiceProvider extends ServiceProvider
 
 
         // ui 레이아웃 골격
+        Blade::component('jinyui::components.'.'app', 'app');
         Blade::component('jinyui::components.'.'app', 'ui-app');
 
         // 프레임워크
         Blade::component('jinyui::components.'.'bootstrap', 'bootstrap'); //부트스트랩 랩퍼
         Blade::component('jinyui::components.'.'tailwindcss', 'tailwindcss');
+
+        $this->layouts();
 
         $this->configureComponents();
 
@@ -103,6 +106,85 @@ class JinyUIServiceProvider extends ServiceProvider
         });
     }
 
+    protected function layouts($type="bootstrap")
+    {
+        Blade::component($this->package.'::components.'.'layouts.full_flex', 'full');
+        Blade::component($this->package.'::components.'.'layouts.page_center', 'page-center');
+
+        // if($type == "bootstrap") {
+        //     Blade::component('jinyui::components.'.'layout.bootstrap.container', 'container');
+        // } else {
+        //     Blade::component('jinyui::components.'.'layout.tailwind.container', 'container');
+        // }
+
+
+
+        // // 레이아웃
+        // Blade::component('jinyui::components.'.'layout.full-screen', 'full-screen');
+        // Blade::component('jinyui::components.'.'layout.center', 'center');
+
+        // Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
+
+
+        // Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
+        // Blade::component('jinyui::components.'.'layout.layout-item', 'layout-item');
+        // Blade::component('jinyui::components.'.'layout.container-fluid', 'container-fluid');
+        // Blade::component('jinyui::components.'.'layout.container-fluid', 'container-full');
+
+
+        // Blade::component('jinyui::components.'.'layout.display-table', 'display-table');
+        // Blade::component('jinyui::components.'.'layout.display-table-cell', 'display-table-cell');
+
+        // //Blade::component('jinyui::components.'.'app', 'app');
+        // //Blade::component('jinyui::components.'.'layout', 'layout');
+        // //Blade::component('jinyui::components.'.'theme', 'theme');
+
+        // //Blade::component('jinyui::components.'.'layouts.main', 'main');
+        // //Blade::component('jinyui::components.'.'layouts.content', 'main-content');
+        // Blade::component('jinyui::components.'.'layout.row', 'row');
+
+        // Blade::component('jinyui::components.'.'layout.col', 'col');
+        // Blade::component('jinyui::components.'.'layout.col-12', 'col-12');
+        // Blade::component('jinyui::components.'.'layout.col-9', 'col-9');
+        // Blade::component('jinyui::components.'.'layout.col-8', 'col-8');
+        // Blade::component('jinyui::components.'.'layout.col-6', 'col-6');
+        // Blade::component('jinyui::components.'.'layout.col-4', 'col-4');
+        // Blade::component('jinyui::components.'.'layout.col-3', 'col-3');
+        // Blade::component('jinyui::components.'.'layout.col-10', 'col-10');
+        // Blade::component('jinyui::components.'.'layout.col-2', 'col-2');
+
+        // // 가로 가운데 정렬배치
+        // Blade::component('jinyui::components.'.'layout.row-center', 'row-center');
+        // Blade::component('jinyui::components.'.'layout.row-center-11', 'row-center-11');
+        // Blade::component('jinyui::components.'.'layout.row-center-10', 'row-center-10');
+        // Blade::component('jinyui::components.'.'layout.row-center-9', 'row-center-9');
+        // Blade::component('jinyui::components.'.'layout.row-center-8', 'row-center-8');
+        // Blade::component('jinyui::components.'.'layout.row-center-7', 'row-center-7');
+        // Blade::component('jinyui::components.'.'layout.row-center-6', 'row-center-6');
+        // Blade::component('jinyui::components.'.'layout.row-center-5', 'row-center-5');
+        // Blade::component('jinyui::components.'.'layout.row-center-4', 'row-center-4');
+        // Blade::component('jinyui::components.'.'layout.row-center-3', 'row-center-3');
+        // Blade::component('jinyui::components.'.'layout.row-center-2', 'row-center-2');
+        // Blade::component('jinyui::components.'.'layout.row-center-1', 'row-center-1');
+
+
+
+        // ## flex 박스
+        // Blade::component('jinyui::components.'.'flex.row', 'flex-row');
+        // Blade::component('jinyui::components.'.'flex.col', 'flex-col'); // 세로배치
+        // Blade::component('jinyui::components.'.'flex.center', 'flex-center'); //가운데
+        // Blade::component('jinyui::components.'.'flex.between', 'flex-between'); //양쪽
+        // Blade::component('jinyui::components.'.'flex.end', 'flex-end'); //양쪽
+        // Blade::component('jinyui::components.'.'flex.item', 'flex-item');
+
+        // ## divide by flex
+        // Blade::component('jinyui::components.'.'flex.divide', 'divide');
+        // Blade::component('jinyui::components.'.'flex.divide-y', 'divide-y');
+        // Blade::component('jinyui::components.'.'flex.divide-item', 'divide-item');
+
+        // ## grid
+        // Blade::component('jinyui::components.'.'flex.grid', 'grid');
+    }
 
 
     protected function configureComponents()
@@ -403,7 +485,6 @@ class JinyUIServiceProvider extends ServiceProvider
         // Utility
 
 
-        $this->layout(); // 레이아웃
 
 
 
@@ -486,82 +567,7 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component('jinyui::components.'.'box.callout-info', 'callout-info');
     }
 
-    protected function layout($type="tailwind")
-    {
-        if($type == "bootstrap") {
-            Blade::component('jinyui::components.'.'layout.bootstrap.container', 'container');
-        } else {
-            Blade::component('jinyui::components.'.'layout.tailwind.container', 'container');
-        }
 
-
-
-        // 레이아웃
-        Blade::component('jinyui::components.'.'layout.full-screen', 'full-screen');
-        Blade::component('jinyui::components.'.'layout.center', 'center');
-
-        Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
-
-
-        Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
-        Blade::component('jinyui::components.'.'layout.layout-item', 'layout-item');
-        Blade::component('jinyui::components.'.'layout.container-fluid', 'container-fluid');
-        Blade::component('jinyui::components.'.'layout.container-fluid', 'container-full');
-
-
-        Blade::component('jinyui::components.'.'layout.display-table', 'display-table');
-        Blade::component('jinyui::components.'.'layout.display-table-cell', 'display-table-cell');
-
-        //Blade::component('jinyui::components.'.'app', 'app');
-        //Blade::component('jinyui::components.'.'layout', 'layout');
-        //Blade::component('jinyui::components.'.'theme', 'theme');
-
-        //Blade::component('jinyui::components.'.'layouts.main', 'main');
-        //Blade::component('jinyui::components.'.'layouts.content', 'main-content');
-        Blade::component('jinyui::components.'.'layout.row', 'row');
-
-        Blade::component('jinyui::components.'.'layout.col', 'col');
-        Blade::component('jinyui::components.'.'layout.col-12', 'col-12');
-        Blade::component('jinyui::components.'.'layout.col-9', 'col-9');
-        Blade::component('jinyui::components.'.'layout.col-8', 'col-8');
-        Blade::component('jinyui::components.'.'layout.col-6', 'col-6');
-        Blade::component('jinyui::components.'.'layout.col-4', 'col-4');
-        Blade::component('jinyui::components.'.'layout.col-3', 'col-3');
-        Blade::component('jinyui::components.'.'layout.col-10', 'col-10');
-        Blade::component('jinyui::components.'.'layout.col-2', 'col-2');
-
-        // 가로 가운데 정렬배치
-        Blade::component('jinyui::components.'.'layout.row-center', 'row-center');
-        Blade::component('jinyui::components.'.'layout.row-center-11', 'row-center-11');
-        Blade::component('jinyui::components.'.'layout.row-center-10', 'row-center-10');
-        Blade::component('jinyui::components.'.'layout.row-center-9', 'row-center-9');
-        Blade::component('jinyui::components.'.'layout.row-center-8', 'row-center-8');
-        Blade::component('jinyui::components.'.'layout.row-center-7', 'row-center-7');
-        Blade::component('jinyui::components.'.'layout.row-center-6', 'row-center-6');
-        Blade::component('jinyui::components.'.'layout.row-center-5', 'row-center-5');
-        Blade::component('jinyui::components.'.'layout.row-center-4', 'row-center-4');
-        Blade::component('jinyui::components.'.'layout.row-center-3', 'row-center-3');
-        Blade::component('jinyui::components.'.'layout.row-center-2', 'row-center-2');
-        Blade::component('jinyui::components.'.'layout.row-center-1', 'row-center-1');
-
-
-
-        ## flex 박스
-        Blade::component('jinyui::components.'.'flex.row', 'flex-row');
-        Blade::component('jinyui::components.'.'flex.col', 'flex-col'); // 세로배치
-        Blade::component('jinyui::components.'.'flex.center', 'flex-center'); //가운데
-        Blade::component('jinyui::components.'.'flex.between', 'flex-between'); //양쪽
-        Blade::component('jinyui::components.'.'flex.end', 'flex-end'); //양쪽
-        Blade::component('jinyui::components.'.'flex.item', 'flex-item');
-
-        ## divide by flex
-        Blade::component('jinyui::components.'.'flex.divide', 'divide');
-        Blade::component('jinyui::components.'.'flex.divide-y', 'divide-y');
-        Blade::component('jinyui::components.'.'flex.divide-item', 'divide-item');
-
-        ## grid
-        Blade::component('jinyui::components.'.'flex.grid', 'grid');
-    }
 
 
 
