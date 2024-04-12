@@ -38,7 +38,9 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component('jinyui::components.'.'tailwindcss', 'tailwindcss');
 
         $this->layouts();
-
+        $this->flexbox();
+        $this->componentLinks();
+        $this->badges();
         $this->configureComponents();
 
         $this->Directive();
@@ -169,21 +171,62 @@ class JinyUIServiceProvider extends ServiceProvider
 
 
 
+
+
+        // ## grid
+        // Blade::component('jinyui::components.'.'flex.grid', 'grid');
+    }
+
+    protected function flexbox()
+    {
+
         // ## flex 박스
         // Blade::component('jinyui::components.'.'flex.row', 'flex-row');
         // Blade::component('jinyui::components.'.'flex.col', 'flex-col'); // 세로배치
-        // Blade::component('jinyui::components.'.'flex.center', 'flex-center'); //가운데
-        // Blade::component('jinyui::components.'.'flex.between', 'flex-between'); //양쪽
-        // Blade::component('jinyui::components.'.'flex.end', 'flex-end'); //양쪽
+        Blade::component($this->package.'::components.'.'flex.center', 'flex-center'); //가운데
+
+        // flex박스를 양쪽으로 배치를 합니다.
+        Blade::component('jinyui::components.'.'flex.between', 'flex-between');
+
+        // Blade::component('jinyui::components.'.'flex.end', 'flex-end');
         // Blade::component('jinyui::components.'.'flex.item', 'flex-item');
+
+        Blade::component($this->package.'::components.'.'flex.column_center', 'flex-column-center'); //가운데
 
         // ## divide by flex
         // Blade::component('jinyui::components.'.'flex.divide', 'divide');
         // Blade::component('jinyui::components.'.'flex.divide-y', 'divide-y');
         // Blade::component('jinyui::components.'.'flex.divide-item', 'divide-item');
+    }
 
-        // ## grid
-        // Blade::component('jinyui::components.'.'flex.grid', 'grid');
+    protected function componentLinks()
+    {
+         // 링크
+         Blade::component('jinyui::components.'.'link.a', 'link');
+         Blade::component('jinyui::components.'.'link.void', 'link-void');
+    }
+
+    protected function badges()
+    {
+        //Blade::component(\Jiny\UI\View\Components\Button\Badge::class, 'badge');
+        // 사각형모형 : 부트스트랩코드
+        Blade::component($this->package.'::components.'.'badges.box-primary', 'badge-primary');
+        Blade::component($this->package.'::components.'.'badges.box-secondary', 'badge-secondary');
+        Blade::component($this->package.'::components.'.'badges.box-danger', 'badge-danger');
+        Blade::component($this->package.'::components.'.'badges.box-info', 'badge-info');
+        Blade::component($this->package.'::components.'.'badges.box-success', 'badge-success');
+        Blade::component($this->package.'::components.'.'badges.box-warring', 'badge-warring');
+        Blade::component($this->package.'::components.'.'badges.box-black', 'badge-black');
+
+        // 라운드모형 : 부트스트랩코드
+        Blade::component($this->package.'::components.'.'badges.rounded-primary', 'badge-primary-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-secondary', 'badge-secondary-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-danger', 'badge-danger-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-info', 'badge-info-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-success', 'badge-success-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-warring', 'badge-warring-rounded');
+        Blade::component($this->package.'::components.'.'badges.rounded-black', 'badge-black-rounded');
+
     }
 
 
@@ -326,8 +369,7 @@ class JinyUIServiceProvider extends ServiceProvider
 
             Blade::component('jinyui::components.'.'button.indicator', 'indicator');
 
-            // 링크
-            Blade::component('jinyui::components.'.'link.a', 'link');
+
 
 
             // Collapse
@@ -549,7 +591,7 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component(\Jiny\UI\View\Components\Button\Dropdown::class, "button-dropdown");
         Blade::component(\Jiny\UI\View\Components\Button\Group::class, "button-group");
         Blade::component('jinyui::components.'.'button.close', 'close');
-        Blade::component(\Jiny\UI\View\Components\Button\Badge::class, 'badge');
+
 
 
         // Tailwind Button Style

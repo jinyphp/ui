@@ -1,7 +1,7 @@
 @once
     @push('css')
     <link rel="stylesheet" href="https://jinyphp.github.io/css/assets/css/app.css">
-    {{-- <link rel="stylesheet" href="/assets/hyper/css/app-saas.css"> --}}
+    @vite('resources/scss/jiny.scss')
     @endpush
 @endonce
 
