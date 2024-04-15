@@ -188,7 +188,7 @@ class JinyUIServiceProvider extends ServiceProvider
         // flex박스를 양쪽으로 배치를 합니다.
         Blade::component('jinyui::components.'.'flex.between', 'flex-between');
 
-        // Blade::component('jinyui::components.'.'flex.end', 'flex-end');
+        Blade::component('jinyui::components.'.'flex.end', 'flex-end');
         // Blade::component('jinyui::components.'.'flex.item', 'flex-item');
 
         Blade::component($this->package.'::components.'.'flex.column_center', 'flex-column-center'); //가운데
