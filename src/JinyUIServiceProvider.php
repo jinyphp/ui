@@ -28,6 +28,12 @@ class JinyUIServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', $this->package);
 
+        // 설정파일 복사
+        $this->publishes([
+            __DIR__.'/../config/setting.php' => config_path('jiny/ui/setting.php'),
+            __DIR__.'/../resources/scss' => resource_path('scss'),
+        ],'ui');
+
 
         // ui 레이아웃 골격
         Blade::component('jinyui::components.'.'app', 'app');
