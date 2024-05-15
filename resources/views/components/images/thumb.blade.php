@@ -1,1 +1,0 @@
-<img {{ $attributes->merge(['class' => 'img-thumbnail']) }}>

@@ -1,1 +1,0 @@
-{!! xSelect()->setAttrs($attributes)->addSlot($slot) !!}
