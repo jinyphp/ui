@@ -44,17 +44,15 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component('jinyui::components.'.'tailwindcss', 'tailwindcss');
 
         $this->layouts();
-
-
+        $this->rowsColume();
+        $this->container();
 
         $this->configureComponents();
 
-        $this->Directive();
 
         /**
          * 부트스트랩 Components
          */
-
         $this->accordion();
         $this->alerts();
         $this->badge();
@@ -80,9 +78,7 @@ class JinyUIServiceProvider extends ServiceProvider
         $this->toasts();
         $this->tooltips();
 
-
         $this->sidebar();
-
 
     }
 
@@ -94,126 +90,73 @@ class JinyUIServiceProvider extends ServiceProvider
         });
     }
 
-    private function Directive()
-    {
-        /**
-         * Markdown Directive
-         */
-        Blade::directive('markdownText', function ($args) {
-            $body = Blade::stripParentheses($args);
-            return (new \Parsedown())->text($body);
-        });
 
-        Blade::directive('markdownFile', function ($args) {
-            $args = Blade::stripParentheses($args);
-            $args = trim($args,'"');
-            if($args[0] == ".") {
-                $path = str_replace(".", DIRECTORY_SEPARATOR, $args).".md";
-                $realPath = dirname(Blade::getPath()).$path;
-            }
-
-            if (file_exists($realPath)) {
-                $body = file_get_contents($realPath);
-                return (new \Parsedown())->text($body);
-            } else {
-                return "cannot find markdown resource ".$realPath."<br>";
-            }
-        });
-
-        Blade::directive('codeFile', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            /*
-            $filename = explode("::", $expression)[1];
-            $filename = str_replace(".", DIRECTORY_SEPARATOR, $filename);
-            $filename = trim($filename,'"').".blade.php";
-
-            $file = "";
-            dd($this->app['config']['view.paths'] );
-            foreach ($this->app['config']['view.paths'] as $path) {
-                dd($path.DIRECTORY_SEPARATOR.$filename);
-                if(file_exists($path.DIRECTORY_SEPARATOR.$filename)) {
-                    $file = $path.DIRECTORY_SEPARATOR.$filename;
-                    break;
-                }
-            }
-            */
-
-            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-
-        Blade::directive('widget', function ($args) {
-            $expression = Blade::stripParentheses($args);
-            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
-        });
-    }
 
     protected function layouts($type="bootstrap")
     {
         Blade::component($this->package.'::components.'.'layouts.full_flex', 'full');
         Blade::component($this->package.'::components.'.'layouts.page_center', 'page-center');
 
+        Blade::component('jinyui::components.'.'layout.bootstrap.container', 'container');
         // if($type == "bootstrap") {
-        //     Blade::component('jinyui::components.'.'layout.bootstrap.container', 'container');
+        //
         // } else {
         //     Blade::component('jinyui::components.'.'layout.tailwind.container', 'container');
         // }
 
 
-
         // // 레이아웃
-        // Blade::component($this->package.'::components.'.'layout.full-screen', 'full-screen');
-        // Blade::component($this->package.'::components.'.'layout.center', 'center');
+        Blade::component($this->package.'::components.'.'layout.full-screen', 'full-screen');
+        Blade::component($this->package.'::components.'.'layout.center', 'center');
 
-        // Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
+        Blade::component(\Jiny\UI\View\Components\MainContent::class, "main-content");
 
+        Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
+        Blade::component($this->package.'::components.'.'layout.layout-item', 'layout-item');
 
-        // Blade::component(\Jiny\UI\View\Components\Layouts\Layout::class, 'layout');
-        // Blade::component($this->package.'::components.'.'layout.layout-item', 'layout-item');
-        // Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-fluid');
-        // Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-full');
+        //Blade::component($this->package.'::components.'.'app', 'app');
+        //Blade::component($this->package.'::components.'.'layout', 'layout');
+        //Blade::component($this->package.'::components.'.'theme', 'theme');
 
-
-        // Blade::component($this->package.'::components.'.'layout.display-table', 'display-table');
-        // Blade::component($this->package.'::components.'.'layout.display-table-cell', 'display-table-cell');
-
-        // //Blade::component($this->package.'::components.'.'app', 'app');
-        // //Blade::component($this->package.'::components.'.'layout', 'layout');
-        // //Blade::component($this->package.'::components.'.'theme', 'theme');
-
-        // //Blade::component($this->package.'::components.'.'layouts.main', 'main');
-        // //Blade::component($this->package.'::components.'.'layouts.content', 'main-content');
-        // Blade::component($this->package.'::components.'.'layout.row', 'row');
-
-        // Blade::component($this->package.'::components.'.'layout.col', 'col');
-        // Blade::component($this->package.'::components.'.'layout.col-12', 'col-12');
-        // Blade::component($this->package.'::components.'.'layout.col-9', 'col-9');
-        // Blade::component($this->package.'::components.'.'layout.col-8', 'col-8');
-        // Blade::component($this->package.'::components.'.'layout.col-6', 'col-6');
-        // Blade::component($this->package.'::components.'.'layout.col-4', 'col-4');
-        // Blade::component($this->package.'::components.'.'layout.col-3', 'col-3');
-        // Blade::component($this->package.'::components.'.'layout.col-10', 'col-10');
-        // Blade::component($this->package.'::components.'.'layout.col-2', 'col-2');
-
-        // // 가로 가운데 정렬배치
-        // Blade::component($this->package.'::components.'.'layout.row-center', 'row-center');
-        // Blade::component($this->package.'::components.'.'layout.row-center-11', 'row-center-11');
-        // Blade::component($this->package.'::components.'.'layout.row-center-10', 'row-center-10');
-        // Blade::component($this->package.'::components.'.'layout.row-center-9', 'row-center-9');
-        // Blade::component($this->package.'::components.'.'layout.row-center-8', 'row-center-8');
-        // Blade::component($this->package.'::components.'.'layout.row-center-7', 'row-center-7');
-        // Blade::component($this->package.'::components.'.'layout.row-center-6', 'row-center-6');
-        // Blade::component($this->package.'::components.'.'layout.row-center-5', 'row-center-5');
-        // Blade::component($this->package.'::components.'.'layout.row-center-4', 'row-center-4');
-        // Blade::component($this->package.'::components.'.'layout.row-center-3', 'row-center-3');
-        // Blade::component($this->package.'::components.'.'layout.row-center-2', 'row-center-2');
-        // Blade::component($this->package.'::components.'.'layout.row-center-1', 'row-center-1');
+        //Blade::component($this->package.'::components.'.'layouts.main', 'main');
+        //Blade::component($this->package.'::components.'.'layouts.content', 'main-content');
 
 
+    }
 
+    protected function container()
+    {
+        Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-fluid');
+        Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-full');
+    }
 
+    protected function rowsColume()
+    {
+        Blade::component($this->package.'::components.'.'layout.row', 'row');
 
-        // ## grid
-        // Blade::component($this->package.'::components.'.'flex.grid', 'grid');
+        Blade::component($this->package.'::components.'.'layout.col', 'col');
+        Blade::component($this->package.'::components.'.'layout.col-12', 'col-12');
+        Blade::component($this->package.'::components.'.'layout.col-9', 'col-9');
+        Blade::component($this->package.'::components.'.'layout.col-8', 'col-8');
+        Blade::component($this->package.'::components.'.'layout.col-6', 'col-6');
+        Blade::component($this->package.'::components.'.'layout.col-4', 'col-4');
+        Blade::component($this->package.'::components.'.'layout.col-3', 'col-3');
+        Blade::component($this->package.'::components.'.'layout.col-10', 'col-10');
+        Blade::component($this->package.'::components.'.'layout.col-2', 'col-2');
+
+        // 가로 가운데 정렬배치
+        Blade::component($this->package.'::components.'.'layout.row-center', 'row-center');
+        Blade::component($this->package.'::components.'.'layout.row-center-11', 'row-center-11');
+        Blade::component($this->package.'::components.'.'layout.row-center-10', 'row-center-10');
+        Blade::component($this->package.'::components.'.'layout.row-center-9', 'row-center-9');
+        Blade::component($this->package.'::components.'.'layout.row-center-8', 'row-center-8');
+        Blade::component($this->package.'::components.'.'layout.row-center-7', 'row-center-7');
+        Blade::component($this->package.'::components.'.'layout.row-center-6', 'row-center-6');
+        Blade::component($this->package.'::components.'.'layout.row-center-5', 'row-center-5');
+        Blade::component($this->package.'::components.'.'layout.row-center-4', 'row-center-4');
+        Blade::component($this->package.'::components.'.'layout.row-center-3', 'row-center-3');
+        Blade::component($this->package.'::components.'.'layout.row-center-2', 'row-center-2');
+        Blade::component($this->package.'::components.'.'layout.row-center-1', 'row-center-1');
     }
 
 
@@ -550,12 +493,7 @@ class JinyUIServiceProvider extends ServiceProvider
         // Simplebar
         Blade::component($this->package.'::components.'.'extension.simplebar', 'simplebar');
 
-        // 마크다운
-        Blade::component(\Jiny\UI\Markdown::class,'markdown');
-
-
         Blade::component(\Jiny\UI\View\Components\FormFilter::class, "filter");
-
 
         Blade::component('jinyui::components.collapse', 'jiny-collapse');
         Blade::component('jinyui::components.scroll-bar', 'jiny-scroll-bar');
