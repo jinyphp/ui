@@ -80,6 +80,8 @@ class JinyUIServiceProvider extends ServiceProvider
 
         $this->sidebar();
 
+        $this->boxColor();
+
     }
 
     public function register()
@@ -126,8 +128,12 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function container()
     {
-        Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-fluid');
-        Blade::component($this->package.'::components.'.'layout.container-fluid', 'container-full');
+        Blade::component($this->package.'::components.'.'container.container', 'container');
+
+        Blade::component($this->package.'::components.'.'container.section_container', 'section-container');
+
+        Blade::component($this->package.'::components.'.'container.container-fluid', 'container-fluid');
+        Blade::component($this->package.'::components.'.'container.container-fluid', 'container-full');
     }
 
     protected function rowsColume()
@@ -424,6 +430,19 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component($this->package.'::components.'.'sidebar.link', 'sidebar-link');
         Blade::component($this->package.'::components.'.'sidebar.nav', 'sidebar-nav');
         Blade::component($this->package.'::components.'.'sidebar.sub', 'sidebar-sub');
+    }
+
+
+    protected function boxColor()
+    {
+        Blade::component($this->package.'::components.'.'boxs.box', 'box');
+
+        Blade::component($this->package.'::components.'.'boxs.box_primary', 'box-primary');
+        Blade::component($this->package.'::components.'.'boxs.box_secondary', 'box-secondary');
+        Blade::component($this->package.'::components.'.'boxs.box_info', 'box-info');
+        Blade::component($this->package.'::components.'.'boxs.box_warring', 'box-warring');
+        Blade::component($this->package.'::components.'.'boxs.box_danger', 'box-danger');
+        Blade::component($this->package.'::components.'.'boxs.box_success', 'box-success');
     }
 
 
