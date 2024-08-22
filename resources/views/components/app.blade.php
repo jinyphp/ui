@@ -14,6 +14,10 @@
 
     <body>
         {{$slot}}
+
+
+        <x-set-actions></x-set-actions>
+
         @stack('scripts')
     </body>
 </html>
