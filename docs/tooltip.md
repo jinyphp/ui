@@ -1,0 +1,73 @@
+---
+theme: ""
+layout: "markdown"
+title: "..."
+breadcrumb:
+    - "Docs"
+---
+
+# Tootip
+
+툴팁은 클릭 또는 마우스를 특정 구성 요소에 가져갔을 때 (hover) 상화에 맞는 도움말이나 정보를 표시합니다.
+
+### class
+
+bootstrap과 tailwind에 있는 유틸리티 클래스를 사용하여 변경이 가능합니다.
+
+### data-bs-title
+
+툴팁안에 출력되는 내용을 설정할 수 있습니다.
+
+### data-bs-placement
+
+툴팁이 나오는 방향을 설정할 수 있습니다
+
+-   top (default)
+-   bottom
+-   left
+-   right
+
+## x-link-tooltip
+
+`x-link-tooltip`는 링크를 생성하고 툴팁을 설정합니다.
+
+```php
+<x-link-tooltip data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-link-tooltip>
+
+<x-link-tooltip class="m-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-link-tooltip>
+```
+
+## x-button-tooltip
+
+`x-link-tooltip`는 버튼을 생성하고 툴팁을 설정합니다.
+
+```php
+<x-button-tooltip data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-button-tooltip>
+
+<x-button-tooltip class="p-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-button-tooltip>
+
+
+```
+
+### button type
+
+버튼의 type를 설정하기 위해서는 type를 추가해줄 수 있습니다.
+default는 button으로 reset,submit 사용이 가능합니다.
+
+```php
+<x-button-tooltip type="submit" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-button-tooltip>
+<x-button-tooltip type="reset" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+내용...
+</x-button-tooltip>
+
+```
