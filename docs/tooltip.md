@@ -3,7 +3,7 @@ theme: ""
 layout: "markdown"
 title: "..."
 breadcrumb:
-    - "Docs"
+  - "Docs"
 ---
 
 # Tootip
@@ -22,37 +22,37 @@ bootstrap과 tailwind에 있는 유틸리티 클래스를 사용하여 변경이
 
 툴팁이 나오는 방향을 설정할 수 있습니다
 
--   top (default)
--   bottom
--   left
--   right
+- top (default)
+- bottom
+- left
+- right
 
-## x-link-tooltip
+## x-tooltip-link
 
-`x-link-tooltip`는 링크를 생성하고 툴팁을 설정합니다.
+`x-tooltip-link`는 링크를 생성하고 툴팁을 설정합니다.
 
 ```php
-<x-link-tooltip data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+<x-tooltip-link data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-link-tooltip>
+</x-tooltip-link>
 
-<x-link-tooltip class="m-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+<x-tooltip-link class="m-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-link-tooltip>
+</x-tooltip-link>
 ```
 
-## x-button-tooltip
+## x-tooltip-button
 
 `x-link-tooltip`는 버튼을 생성하고 툴팁을 설정합니다.
 
 ```php
-<x-button-tooltip data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+<x-tooltip-button data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-button-tooltip>
+</x-tooltip-button>
 
-<x-button-tooltip class="p-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+<x-tooltip-button class="p-4" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-button-tooltip>
+</x-tooltip-button>
 
 
 ```
@@ -63,11 +63,11 @@ bootstrap과 tailwind에 있는 유틸리티 클래스를 사용하여 변경이
 default는 button으로 reset,submit 사용이 가능합니다.
 
 ```php
-<x-button-tooltip type="submit" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+<x-tooltip-button type="submit" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-button-tooltip>
-<x-button-tooltip type="reset" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
+</x-tooltip-button>
+<x-tooltip-button type="reset" data-bs-title="툴팁 내용" data-bs-placement="툴팁의 방향">
 내용...
-</x-button-tooltip>
+</x-tooltip-button>
 
 ```

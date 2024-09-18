@@ -407,7 +407,7 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function toasts()
     {
-        Blade::component($this->package . '::components.' . 'toast.container', 'toast-container');
+        Blade::component($this->package . '::components.' . 'toast.toast', 'toast');
         Blade::component($this->package . '::components.' . 'toast.header', 'toast-header');
         Blade::component($this->package . '::components.' . 'toast.body', 'toast-body');
     }
