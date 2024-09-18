@@ -412,8 +412,8 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function tooltips()
     {
-        Blade::component($this->package . '::components.' . 'tooltip.LinkTooltip', 'link-tooltip');
-        Blade::component($this->package . '::components.' . 'tooltip.buttonTooltip', 'button-tooltip');
+        Blade::component($this->package . '::components.' . 'tooltip.LinkTooltip', 'tooltip-link');
+        Blade::component($this->package . '::components.' . 'tooltip.buttonTooltip', 'tooltip-button');
 
     }
 

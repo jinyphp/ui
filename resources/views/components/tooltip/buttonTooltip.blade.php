@@ -1,5 +1,5 @@
 @props(['type' => 'button'])
 
-<button {{$attributes}} class="btn btn-secondary" data-bs-toggle="tooltip">
+<button  class="btn btn-secondary" {{$attributes->merge(['class' => $class])}} data-bs-toggle="tooltip">
   {{$slot}}
 </button>
