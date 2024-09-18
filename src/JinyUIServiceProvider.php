@@ -402,7 +402,8 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function spinners()
     {
-
+        Blade::component($this->package . '::components.' . 'spinner.border', 'spinner-border');
+        Blade::component($this->package . '::components.' . 'spinner.grow', 'spinner-grow');
     }
 
     protected function toasts()
