@@ -31,6 +31,19 @@ bootstrap과 tailwind에 있는 유틸리티 클래스를 사용하여 변경이
 - left
 - right
 
+## btType
+
+버튼의 기본 색상을 지정해 줄 수 있는 속성명입니다.
+
+- primary
+- secondary
+- success
+- danger
+- warning
+- info
+- ligth
+- dark
+
 ## x-popover
 
 `x-tooltip`는 클릭할 수 있는 버튼을 생성하고 툴팁을 설정합니다.

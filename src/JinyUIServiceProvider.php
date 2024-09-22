@@ -387,7 +387,7 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function popovers()
     {
-
+        Blade::component($this->package . '::components.' . 'popover.popover', 'popover');
     }
 
     protected function progress()
