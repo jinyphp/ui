@@ -27,12 +27,19 @@ type를 사용하여 간단하게 spinner의 색깔을 변경할 수 있다.
 - ligth
 - dark
 
+## size
+
+size를 사용하여 spinner의 크기를 줄일 수 있다.
+
+- sm
+  size를 사용하지 않고 class에 width와 height를 변경하는 유틸리티를 사용하여 사이즈를 변경할 수 있다.
+
 ## x-spinner-border
 
 `x-spinner-border`는 원의 테두리를 회전하는 로딩인디게이터를 생성한다.
 
 ```html
-<x-spinner-border type="primary"></x-spinner-border>
+<x-spinner-border type="primary" size="sm"></x-spinner-border>
 <x-spinner-border type="secondary"></x-spinner-border>
 <x-spinner-border type="success"></x-spinner-border>
 ```
