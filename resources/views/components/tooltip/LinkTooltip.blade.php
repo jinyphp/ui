@@ -1,3 +1,3 @@
-<a class="muted"{{$attributes->merge(['class' => $class])}} data-bs-toggle="tooltip">
+<a {{$attributes->merge(['class' => "muted"])}} data-bs-toggle="tooltip">
     {{$slot}}
 </a>
