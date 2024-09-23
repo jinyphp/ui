@@ -382,6 +382,9 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function placeholders()
     {
+        Blade::component($this->package . '::components.' . 'placeholder.placeholder', 'placeholder');
+        Blade::component($this->package . '::components.' . 'placeholder.placeholderGrow', 'placeholder-glow');
+        Blade::component($this->package . '::components.' . 'placeholder.placeholderWave', 'placeholder-wave');
 
     }
 
