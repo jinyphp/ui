@@ -372,7 +372,10 @@ class JinyUIServiceProvider extends ServiceProvider
 
     protected function offcanvas()
     {
-
+        Blade::component($this->package . '::components.' . 'offcanvas.offcanvas', 'offcanvas');
+        Blade::component($this->package . '::components.' . 'offcanvas.offcanvasHeader', 'offcanvas-header');
+        Blade::component($this->package . '::components.' . 'offcanvas.offcanvasBody', 'offcanvas-body');
+        Blade::component($this->package . '::components.' . 'offcanvas.offcanvasButton', 'offcanvas-button');
     }
 
     protected function pagination()
