@@ -14,8 +14,9 @@
         "php": "^8.2",
         "jiny/html": "^0.3",
         "jiny/css": "^0.0.3",
-        "jiny/ui-components": "^0.5.0",
-        "jiny/ui-widgets": "^0.3.0"
+
+        "jiny/ui-components": "^0.8",
+        "jiny/ui-widgets": "^0.7"
     },
     "autoload": {
         "psr-4": {
