@@ -82,6 +82,10 @@ class JinyUIServiceProvider extends ServiceProvider
 
         $this->boxColor();
 
+        /* 추가 요소 */
+
+        $this->countdown();
+
     }
 
     public function register()
@@ -458,6 +462,16 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component($this->package . '::components.' . 'boxs.box_success', 'box-success');
     }
 
+    protected function countdown()
+    {
+        Blade::component($this->package . '::components.' . 'countdown.countdown', 'countdown');
+        Blade::component($this->package . '::components.' . 'countdown.countdownDay', 'countdown-day');
+        Blade::component($this->package . '::components.' . 'countdown.countdownHour', 'countdown-hour');
+
+        Blade::component($this->package . '::components.' . 'countdown.card', 'countdown-card');
+        Blade::component($this->package . '::components.' . 'countdown.cardDay', 'countdown-card-day');
+        Blade::component($this->package . '::components.' . 'countdown.cardHour', 'countdown-card-hour');
+    }
 
 
 
