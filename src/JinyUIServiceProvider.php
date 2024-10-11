@@ -86,7 +86,7 @@ class JinyUIServiceProvider extends ServiceProvider
 
         $this->countdown();
         $this->scrollbar();
-
+        $this->input_formatter();
     }
 
     public function register()
@@ -480,8 +480,13 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component($this->package . '::components.' . 'scrollbar.horizontal', 'scrollbar-horizontal');
     }
 
-
-
+    protected function input_formatter()
+    {
+        Blade::component($this->package . '::components.' . 'input.phone', 'input-phone');
+        Blade::component($this->package . '::components.' . 'input.date', 'input-date');
+        Blade::component($this->package . '::components.' . 'input.dateShort', 'input-date-short');
+        Blade::component($this->package . '::components.' . 'input.time', 'input-time');
+    }
 
 
 
