@@ -1,6 +1,6 @@
 @props(['countdownDate' => null, 'size' => 'h4'])
 
-<div class="d-flex" data-countdown-date="{{$countdownDate}}">
+<div {{$attributes->merge(['class' => "d-flex"]) }} data-countdown-date="{{$countdownDate}}">
   <div class="text-center">
     <div class="{{$size}} mb-0" data-hours></div>
     <span class="fs-sm">hours</span>

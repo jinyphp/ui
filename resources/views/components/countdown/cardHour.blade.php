@@ -1,6 +1,6 @@
 @props(['countdownDate' => null, 'size' => 'h4', 'backGround' => null])
 
-<div class="d-flex flex-wrap" data-countdown-date="{{$countdownDate}}">
+<div {{$attributes->merge(['class' => "d-flex flex-wrap"]) }} data-countdown-date="{{$countdownDate}}">
   <div class="text-center mb-2">
     <div class="{{$backGround ? 'bg-body-' . $backGround : 'border'}} rounded p-2">
       <div class="{{$size}} fw-medium mb-0 mx-1" data-hours></div>
