@@ -87,6 +87,7 @@ class JinyUIServiceProvider extends ServiceProvider
         $this->countdown();
         $this->scrollbar();
         $this->input_formatter();
+        $this->blog();
     }
 
     public function register()
@@ -486,6 +487,18 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component($this->package . '::components.' . 'input.date', 'input-date');
         Blade::component($this->package . '::components.' . 'input.dateShort', 'input-date-short');
         Blade::component($this->package . '::components.' . 'input.time', 'input-time');
+    }
+
+    protected function blog()
+    {
+        Blade::component($this->package . '::components.' . 'blog.img', 'blog-img');
+        Blade::component($this->package . '::components.' . 'blog.previewCard', 'blog');
+        Blade::component($this->package . '::components.' . 'blog.title', 'blog-title');
+        Blade::component($this->package . '::components.' . 'blog.text', 'blog-text');
+
+        Blade::component($this->package . '::components.' . 'blog.horizontal', 'blog-horizontal');
+        Blade::component($this->package . '::components.' . 'blog.imgHorizontal', 'blog-img-horizontal');
+        Blade::component($this->package . '::components.' . 'blog.container', 'blog-container');
     }
 
 
