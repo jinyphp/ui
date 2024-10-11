@@ -85,6 +85,7 @@ class JinyUIServiceProvider extends ServiceProvider
         /* 추가 요소 */
 
         $this->countdown();
+        $this->scrollbar();
 
     }
 
@@ -471,6 +472,12 @@ class JinyUIServiceProvider extends ServiceProvider
         Blade::component($this->package . '::components.' . 'countdown.card', 'countdown-card');
         Blade::component($this->package . '::components.' . 'countdown.cardDay', 'countdown-card-day');
         Blade::component($this->package . '::components.' . 'countdown.cardHour', 'countdown-card-hour');
+    }
+
+    protected function scrollbar()
+    {
+        Blade::component($this->package . '::components.' . 'scrollbar.vertical', 'scrollbar');
+        Blade::component($this->package . '::components.' . 'scrollbar.horizontal', 'scrollbar-horizontal');
     }
 
 
