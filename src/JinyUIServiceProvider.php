@@ -405,8 +405,10 @@ class JinyUIServiceProvider extends ServiceProvider
     protected function progress()
     {
         Blade::component($this->package . '::components.' . 'progress.progressBar', 'progress-bar');
+        Blade::component($this->package . '::components.' . 'progress.striped', 'progress-bar-striped');
         Blade::component($this->package . '::components.' . 'progress.stack', 'progress-stack');
         Blade::component($this->package . '::components.' . 'progress.stackBar', 'stack-bar');
+        Blade::component($this->package . '::components.' . 'progress.stackStriped', 'stack-bar-striped');
     }
 
     protected function scrollspy()

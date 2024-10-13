@@ -1,8 +1,9 @@
 @props([
-  'nowValue' => null,
-  'pgLabel' => null,
-  'pgStyle' => null,
-  'textColor' => null,
+    'nowValue' => null,
+    'pgLabel' => null,
+    'pgStyle' => null,
+    'textColor' => null,
+    'animated' => false
 ])
 
 <div {{$attributes->merge(['class' => "progress"])}}
@@ -11,7 +12,7 @@
      aria-valuenow="{{ $nowValue ?? 0 }}" 
      aria-valuemin="0" 
      aria-valuemax="100">
-  <div class="progress-bar {{$pgStyle ? 'bg-' . $pgStyle : '' }} {{$textColor ? 'text-' . $textColor : ''}}" 
+  <div class="progress-bar progress-bar-striped {{$animated ? 'progress-bar-animated' : ''}}   {{$pgStyle ? 'bg-' . $pgStyle : '' }} {{$textColor ? 'text-' . $textColor : ''}}" 
     style="width: {{ $nowValue ?? 0 }}%"
     >
     {{$slot}}
