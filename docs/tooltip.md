@@ -106,13 +106,14 @@ default는 `primary`으로 설정되어있으며 사용할 수 있는 값은 다
   type="submit"
   data-bs-title="툴팁 내용"
   data-bs-placement="툴팁의 방향"
+  btnStyle="info"
 >
   내용...
 </x-tooltip-button>
 <x-tooltip-button
-  type="reset"
   data-bs-title="툴팁 내용"
   data-bs-placement="툴팁의 방향"
+  btnStyle="success"
 >
   내용...
 </x-tooltip-button>
