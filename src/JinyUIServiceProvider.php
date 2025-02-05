@@ -49,6 +49,10 @@ class JinyUIServiceProvider extends ServiceProvider
 
         $this->configureComponents();
 
+        // Flex
+        ## flex 박스
+        Blade::component($this->package.'::components.'.'flex.flex', 'flex');
+        Blade::component($this->package.'::components.'.'flex.flex_center', 'flex-center');
 
         /**
          * 부트스트랩 Components
